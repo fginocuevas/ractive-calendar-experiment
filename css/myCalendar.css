@@ -1,0 +1,12 @@
+table, table td, table th {
+	border: 1px solid #CCC;
+}
+
+.adjacent-month {
+    background-color: gray;
+}
+
+.today {
+    background-color: blue;
+    color: white;
+}
