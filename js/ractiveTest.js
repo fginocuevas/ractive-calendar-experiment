@@ -19,3 +19,5 @@ $('#activate').on('click', function () {
 updateView = function (model) {
     view.set(model);
 };*/
+
+//Hello
