@@ -1,5 +1,35 @@
+var selectedDate = "";
+var prevSelectedElement;
+
 $(function(){
+    $("#addEventModalContainer").hide();
+    $(".close").on('click',function(){
+        $("#addEventModalContainer").hide();
+    });
+
+    var events = JSON.parse(sessionStorage.getItem('events'));
+
+    if (events =="" || events == null){
+        events = mockEvents();
+        sessionStorage.setItem('events', JSON.stringify(events));
+    }
+    generateCal(events);
+
+    $("#formContainer").on('submit',function(){
+        var userEvent = $("#eventTitle").val();
+        events.push({ date: selectedDate, title: userEvent})
+        sessionStorage.setItem('events', JSON.stringify(events));
+        //var sessionEvents = sessionStorage.getItem("events");
+        window.location="../ractive-calendar-experiment/myCalendar.html";
+    });
+
+
+
+});
+
+function generateCal(myEvents){
     $('#generateCalendarContainer').clndr({
+
         render: function(data){
 
             showAdjacentMonths: false,
@@ -25,7 +55,7 @@ $(function(){
             data.weeks= weeks;
 
             // Print out contents of data into the console
-            console.log(JSON.stringify(data)); //output the json object in console for inspection.
+            //console.log(JSON.stringify(data)); //output the json object in console for inspection.
 
             var calendarRactiveOptions= {
                 el: '#generateCalendarContainer',
@@ -37,8 +67,15 @@ $(function(){
 
         },
 
+        events : myEvents,
+
         clickEvents: {
                     click: function (target) {
+                        $("#addEventModalContainer").show();
+                        $(".calendar-day-"+prevSelectedElement).removeClass("light-blue-background");
+                        selectedDate = target.date._i;
+                        prevSelectedElement = selectedDate;
+                        $(".calendar-day-"+selectedDate).addClass("light-blue-background");
                         console.log('Cal-1 clicked: ', target);
                     },
                     today: function () {
@@ -77,4 +114,29 @@ $(function(){
         //daysOfTheWeek	: ['SUNDAY', 'MONDAY', 'TUESDAY', 'WEDNESDAY', 'THURSDAY', 'FRIDAY', 'SATURDAY'],
 
     })
-})
+};
+
+function showAddEventModal(){
+    var calendarRactiveOptions= {
+        el: '#addEventModalContainer',
+        template: '#addEventModalTmpl'
+    }
+
+    var calendarRactive= new Ractive(calendarRactiveOptions);
+}
+
+function addEvent(events){
+
+}
+
+
+function mockEvents(){
+	var events = new Array();
+	var event2 = { date: '2017-08-03', title: 'BIRTHDAY!'};
+	var event3 = { date: '2017-07-12', title: 'Independence Day!'};
+	events.push(event2);
+	events.push(event3);
+
+	return events;
+};
+
