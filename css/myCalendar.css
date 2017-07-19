@@ -1,5 +1,9 @@
-table, table td, table th {
-	border: 1px solid #CCC;
+table {
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
 }
 
 .adjacent-month {
@@ -13,4 +17,26 @@ table, table td, table th {
 
 .color-gauge{
     height: 10px;
+}
+
+.day {
+    height : 100px;
+    width : 100px;
+}
+
+.light-blue-background{
+    background: #4286f4;
+}
+
+#dayContainer{
+    height: 10%;
+    padding-right: 10%;
+    padding-top: 5%;
+    float: right;
+}
+
+#titleContainer{
+    width: 100%;
+    height: 80%;
+    font-size : 12px;
 }
