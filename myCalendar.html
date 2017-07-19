@@ -54,11 +54,15 @@
             </tbody>
         </table>
     </script>
-    <div id="addEventModalContainer1">
-        <form>
-            Title: <input id="eventTitle" type="text"><br>
-            <input type="button" id="sampleId" value="ADD!"/>
-        </form>
+    <div id="addEventModalContainer">
+        <div id="addEventModal">
+            <span class="close">&times;</span>
+            <br/>
+            <form id="formContainer">
+                Title: <input id="eventTitle" type="text"><br>
+                <input type="button" id="sampleId" value="ADD!"/>
+            </form>
+        </div>
     </div>
     <!--<script id="addEventModalTmpl" type="text/ractive">
         First name: <input id="eventTitle" type="text"><br>

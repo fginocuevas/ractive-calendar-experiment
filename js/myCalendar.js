@@ -2,8 +2,10 @@ var selectedDate = "";
 var prevSelectedElement;
 
 $(function(){
-    $("#addEventModalContainer1").hide();
-
+    $("#addEventModalContainer").hide();
+    $(".close").on('click',function(){
+        $("#addEventModalContainer").hide();
+    });
 
     var events = JSON.parse(sessionStorage.getItem('events'));
 
@@ -70,7 +72,7 @@ function generateCal(myEvents){
 
         clickEvents: {
                     click: function (target) {
-                        $("#addEventModalContainer1").show();
+                        $("#addEventModalContainer").show();
                         $(".calendar-day-"+prevSelectedElement).removeClass("light-blue-background");
                         selectedDate = target.date._i;
                         prevSelectedElement = selectedDate;
