@@ -15,8 +15,7 @@ $(function(){
     }
     generateCal(events);
 
-    $("#sampleId").on('click',function(){
-
+    $("#formContainer").on('submit',function(){
         var userEvent = $("#eventTitle").val();
         events.push({ date: selectedDate, title: userEvent})
         sessionStorage.setItem('events', JSON.stringify(events));
