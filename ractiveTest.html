@@ -9,19 +9,69 @@
     <script src="js/plugins/moment.min.js"></script>
     <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>-->
     <script src="js/plugins/clndr.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/ractive"></script>
+    <script src="js/plugins/ractive.js"></script>
 
     <link href="css/myCalendar.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <h3>Ractive Test</h3>
-    <div id="ractiveTestContainer">{{name}}</div>
+    <h1>Ractive Test Bench</h1>
+    <div id="ractiveTestContainer"></div>
 
     <script id="ractiveTestTemplate" type="text/ractive">
-        <h1>Hello {{name}} assigned with {{employeeNum}}</h1>
+
+        <h2>1.) Testing two-way binding</h2>
+        <h3>Current User Info: {{name}} ({{employeeNum}})</h3>
+        <p>
+        Name: <input type="text" id="employeeName" value="{{name}}"><br>
+        Employee#: <input type="text" id="employeeNumber" value="{{employeeNum}}"><br>
+        </p>
+
+        <h2>2.) Button and ClickListeners (Incomplete)</h2>
+        <button id='Update'>Update!</button>
+
+        <h2>3.) Expressions</h2>
+
+            <h3>3.1) Format Salary</h3>
+            <h4>Current User Info: {{name}} {{formatSalary(salary)}}</h4>
+            <p>
+            Salary: <input type="text" id="salary" value="{{salary}}"><br>
+            </p>
+
+            <h3>3.2) Color Mixer</h3>
+
+            <div id="colorMixer">
+                <div id="red">
+                    <p>Color{{colorMixer.red.name}}</p>
+                    <div class="color-gauge" style="background-color:{{colorMixer.red.name}}; width:{{colorMixer.red.amount *100}}%"></div>
+                    <div id="redControls">
+                        <input type="number" name="quantity" min="0.0" max="1" step="0.05" value="{{colorMixer.red.amount}}">
+                    </div>
+                </div>
+
+                <div id="green">
+                    <div class="color-gauge" style="background-color:{{colorMixer.green.name}}; width:{{colorMixer.green.amount *100}}%"></div>
+                    <div id="greenControls">
+                        <input type="number" name="quantity" min="0.0" max="1" step="0.05" value="{{colorMixer.green.amount}}">
+                    </div>
+                </div>
+
+                <div id="blue">
+                    <div class="color-gauge" style="background-color:{{colorMixer.blue.name}}; width:{{colorMixer.blue.amount *100}}%"></div>
+                    <div id="blueControls">
+                        <input type="number" name="quantity" min="0.0" max="1" step="0.05" value="{{colorMixer.blue.amount}}">
+                    </div>
+                </div>
+
+                <div id="palette">
+                    <div class="color-gauge" style="background-color:rgb({{Math.round(colorMixer.red.amount*255)}},{{Math.round(colorMixer.blue.amount*255)}},{{Math.round(colorMixer.green.amount*255)}}); width:100%"></div>
+                </div>
+                <p>{{Math.round(colorMixer.red.amount*255)}},{{Math.round(colorMixer.blue.amount*255)}},{{Math.round(colorMixer.green.amount*255)}}</p>
+            </div>
+
+
     </script>
 
-    <button id='activate'>Activate!</button>
+
 
     <script src="js/ractiveTest.js"></script>
 </body>

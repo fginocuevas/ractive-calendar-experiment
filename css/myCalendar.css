@@ -10,3 +10,7 @@ table, table td, table th {
     background-color: blue;
     color: white;
 }
+
+.color-gauge{
+    height: 10px;
+}
