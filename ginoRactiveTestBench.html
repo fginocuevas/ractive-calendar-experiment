@@ -74,8 +74,39 @@
                 <p>{{Math.round(colorMixer.red.amount*255)}},{{Math.round(colorMixer.green.amount*255)}},{{Math.round(colorMixer.blue.amount*255)}}</p>
             </div>
 
+            <h3>4) Login and Conditional Statements</h3>
+            <p>Status: {{#if signedIn}}Signed in as {{username}}{{else}}No signed in{{/if}}</p>
+            Username: <input type="text" id="loginUsername" value="{{loginUsername}}"><br>
+            <button on-click="loginConditional('(#loginUsername).val()')">Login</button>
+
 
     </script>
+
+
+
+    <div id="target"></div>
+
+    <div id="target"></div>
+
+    <script id="template" type="text/ractive">
+	<table>
+	  <tr>
+	  	<th>#</th>
+	    <th class="sortable {{sortColumn ==='name'? 'sorted' : ''}}" style=' color: {{sortColumn ==='name'? 'red' : 'green'}}'on-click="@.sort('name')">Superhero name</th>
+	    <th class="sortable" class-sorted="sortColumn === 'realname'" on-click="@.sort('realname')">Real name</th>
+	    <th class="sortable" class-sorted="sortColumn === 'power'" on-click="@.sort('power')">Superpower</th>
+	  </tr>
+
+	  {{#each sort( superheroes ): num}}
+	    <tr>
+	    	<td>{{num + 1}}</td>
+	      <td><a href='{{info}}'>{{name}}</a></td>
+	      <td>{{realname}}</td>
+	      <td>{{power}}</td>
+	    </tr>
+	  {{/each}}
+	</table>
+</script>
 
     <script src="js/ractiveTestBench.js"></script>
 </body>

@@ -14,3 +14,39 @@ table, table td, table th {
 .color-gauge{
     height: 10px;
 }
+
+html {
+	font-family: sans-serif;
+}
+
+table {
+	border-spacing: 0;
+}
+
+th {
+	text-align: left;
+	background-color: #222;
+	color: #eee;
+}
+
+th.sortable {
+	cursor: pointer;
+}
+
+th.sortable:before {
+	content: '▾';
+	color: #555;
+	margin-right: 0.5em;
+}
+
+th.sortable.sorted:before {
+	color: #eee;
+}
+
+td {
+	border-bottom: 1px solid #ddd;
+}
+
+tr > * {
+	padding: 0.5em;
+}

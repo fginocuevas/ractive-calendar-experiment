@@ -23,6 +23,10 @@ var model = {
             name: "blue",
             amount: 0.3
             }
+    },
+    loginUserName: "",
+    loginConditional: function(username){
+
     }
 };
 
@@ -57,12 +61,41 @@ $('#activate').on('click', function () {
     view.set({"name":"Francis", "employeeNum": 177777});
 });
 
-/*
+var ractive, xmen;
 
-updateView = function (model) {
-    view.set(model);
-};*/
+// define our superheroes
+xmen = [
+  { name: 'Nightcrawler', realname: 'Wagner, Kurt',     power: 'Teleportation',    info: 'http://www.superherodb.com/Nightcrawler/10-107/' },
+  { name: 'Cyclops',      realname: 'Summers, Scott',   power: 'Optic blast',      info: 'http://www.superherodb.com/Cyclops/10-50/' },
+  { name: 'Rogue',        realname: 'Marie, Anna',      power: 'Absorbing powers', info: 'http://www.superherodb.com/Rogue/10-831/' },
+  { name: 'Wolverine',    realname: 'Howlett, James',   power: 'Regeneration',     info: 'http://www.superherodb.com/Wolverine/10-161/' }
+];
 
-//Hello
+ractive = new Ractive({
+  target: '#target',
+  template: '#template',
+  data: {
+  	superheroes: xmen,
+  	sortColumn: 'name',
+  	sort: function( array ) {
+  		// console.log("function(" + JSON.stringify(array) + ") initiated");
+  		// grab the current sort column
+  		var column = this.get( 'sortColumn' );
 
-//HI!
+  		// console.log("column: " + column);
+
+	  	// clone the array so as not to modify the underlying data
+	  	var arr = array.slice();
+
+	  	return arr.sort( function( a, b ) {
+	  		console.log("a[" + JSON.stringify(a) +"] VS b[" + JSON.stringify(b) + "]");
+	  		return a[ column ] < b[ column ] ? -1 : 1;
+	  	});
+  	}
+  },
+  sort: function( columnName ) {
+  	// update the sort column
+  	console.log("function(" + columnName + ") initiated");
+  	this.set('sortColumn', columnName);
+  }
+});
